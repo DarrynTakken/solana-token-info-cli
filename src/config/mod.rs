@@ -1,0 +1,1 @@
+pub const SOLANA_BASE_API_ENDPOINT: &str = "https://api.devnet.solana.com";
