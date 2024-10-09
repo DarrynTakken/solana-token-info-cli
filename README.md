@@ -46,7 +46,7 @@ cargo build --release
 After building the project, you can run the CLI tool to retrieve token information. For example:
 
 ```bash
-./solana-token-info-cli <TOKEN-ADDRESS>
+./solana-token-info-cli <TOKEN_ADDRESS>
 ```
 
 Use --help to see all available commands and options:
