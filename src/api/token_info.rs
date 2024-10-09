@@ -8,7 +8,7 @@ use regex::Regex;
 use url::Url;
 use serde::{Deserialize, Serialize};
 
-use crate::config::consts::{SOLANA_BASE_API_ENDPOINT, METAPLEX_PROGRAM_ID};
+use crate::config::consts::{METAPLEX_PROGRAM_ID};
 use crate::errors::errors::AppError;
 
 // Struct to handle token information responses, with optional fields for flexibility
@@ -46,9 +46,7 @@ pub struct TokenInfo {
 }
 
 // Asynchronous function to get detailed token information
-pub async fn get_token_info(token_address: &str) -> Result<TokenInfo, Box<dyn std::error::Error>> {
-    let client = RpcClient::new(SOLANA_BASE_API_ENDPOINT);
-
+pub async fn get_token_info(client: &RpcClient, token_address: &str) -> Result<TokenInfo, Box<dyn std::error::Error>> {
     let token_pubkey = Pubkey::from_str(token_address)
         .map_err(|_| AppError::InvalidTokenAddress(token_address.to_string()))?;
 

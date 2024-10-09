@@ -3,7 +3,6 @@ use solana_client::rpc_client::RpcClient;
 use solana_sdk::pubkey::Pubkey;
 use serde::{Deserialize};
 
-use crate::config::consts::SOLANA_BASE_API_ENDPOINT;
 use crate::errors::errors::AppError;
 
 // Struct to deserialize and handle the response from the get_supply_info function
@@ -14,9 +13,7 @@ pub struct SupplyInfo {
 
 // Asynchronous function to retrieve token supply information from Solana
 // Takes a token address as a string reference and returns a Result with SupplyInfo or AppError
-pub async fn get_supply_info(token_address: &str) -> Result<SupplyInfo, AppError> {
-    let client = RpcClient::new(SOLANA_BASE_API_ENDPOINT);
-    
+pub async fn get_supply_info(client: &RpcClient, token_address: &str) -> Result<SupplyInfo, AppError> {
     let token_pubkey = Pubkey::from_str(token_address)
         .map_err(|_| AppError::InvalidTokenAddress(token_address.to_string()))?;
 

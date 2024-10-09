@@ -7,7 +7,9 @@ use clap::Parser;
 use serde_json;
 
 use crate::cli::args::Cli;
+use solana_client::rpc_client::RpcClient;
 use crate::api::{get_token_info, get_supply_info};
+use crate::config::consts::SOLANA_BASE_API_ENDPOINT;
 use crate::errors::errors::AppError;
 
 // Entry point of the asynchronous main function, which is executed using the Tokio runtime
@@ -24,9 +26,11 @@ async fn main() {
         }
     };
 
+    let client = RpcClient::new(SOLANA_BASE_API_ENDPOINT);
+
     // Perform concurrent asynchronous tasks to fetch token info and supply info
-    let token_info_task = get_token_info(&token_address);
-    let supply_info_task = get_supply_info(&token_address);
+    let token_info_task = get_token_info(&client, &token_address);
+    let supply_info_task = get_supply_info(&client, &token_address);
     let (token_info_task, supply_info_task) = tokio::join!(token_info_task, supply_info_task);
 
     // Handle the results of both tasks
