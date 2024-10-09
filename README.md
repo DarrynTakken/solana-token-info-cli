@@ -43,7 +43,7 @@ cargo build --release
 
 ## Usage
 
-Ensure you have Rust and Cargo installed on your system. Then, clone this repository and build the project:
+After building the project, you can run the CLI tool to retrieve token information. For example:
 
 ```bash
 ./solana-token-info-cli <solana-token-address>
