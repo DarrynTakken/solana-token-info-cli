@@ -6,12 +6,6 @@ pub enum AppError {
     #[error("Invalid token address - {0}")]
     InvalidTokenAddress(String),
 
-    #[error("Failed to fetch supply info - {0}")]
-    SupplyInfoError(String),
-
-    #[error("Failed to fetch token info - {0}")]
-    TokenInfoError(String),
-
     #[error("Invalid domain - {0}")]
     InvalidDomain(String),
 
@@ -26,6 +20,12 @@ pub enum AppError {
 
     #[error("{0}")]
     GeneralError(String),
+
+    // #[error("Failed to fetch supply info - {0}")]
+    // SupplyInfoError(String),
+
+    // #[error("Failed to fetch token info - {0}")]
+    // TokenInfoError(String),
 
     // #[error("Network request failed: {0}")]
     // NetworkError(String),
