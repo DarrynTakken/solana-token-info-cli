@@ -23,10 +23,10 @@ pub async fn get_supply_info(token_address: &str) -> Result<SupplyInfo, AppError
     // Fetch the token supply information using the RPC client
     // If the request fails, return an AppError for supply info failure
     let supply_response = client.get_token_supply(&token_pubkey)
-        .map_err(|_| AppError::SupplyInfoError("Failed to fetch supply info".to_string()))?;
+        .map_err(|_| AppError::GeneralError("Failed to fetch supply info".to_string()))?;
 
     let amount = supply_response.amount.parse::<String>()
-        .map_err(|_| AppError::SupplyInfoError("Failed to parse supply amount".to_string()))?;
+        .map_err(|_| AppError::GeneralError("Failed to parse supply amount".to_string()))?;
 
     Ok(SupplyInfo { amount })
 }

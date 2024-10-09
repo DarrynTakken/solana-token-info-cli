@@ -56,11 +56,7 @@ pub async fn get_token_info(token_address: &str) -> Result<TokenInfo, Box<dyn st
 
     // Fetch the metadata account associated with the token
     let metadata_account = client.get_account(&metadata_pubkey)
-        .map_err(|e| Box::new(AppError::TokenInfoError(format!("Failed to fetch metadata account: {}", e))))?;
-
-    if metadata_account.data.is_empty() {
-        return Err(Box::new(AppError::TokenInfoError("Metadata account is empty".to_string())));
-    }
+        .map_err(|e| Box::new(AppError::GeneralError(format!("Failed to fetch metadata account - {}", e))))?;
 
     let mut offset = 96; // Set initial offset to skip unnecessary data
 
