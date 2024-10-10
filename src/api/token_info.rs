@@ -54,7 +54,7 @@ pub async fn get_token_info(client: &RpcClient, token_address: &str) -> Result<T
 
     // Fetch the metadata account associated with the token
     let metadata_account = client.get_account(&metadata_pubkey)
-        .map_err(|e| Box::new(AppError::GeneralError(format!("Failed to fetch metadata account - {}", e))))?;
+        .map_err(|e| AppError::GeneralError(format!("Failed to fetch metadata account - {}", e)))?;
 
     let mut offset = 96; // Set initial offset to skip unnecessary data
 

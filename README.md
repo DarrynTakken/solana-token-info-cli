@@ -2,16 +2,19 @@
 Solana Token Info CLI is a Rust-based command-line tool that retrieves token information for a given Solana address.
 
 ## Features
-- Retrieve token name
-- Retrieve token symbol
-- Retrieve token description
-- Retrieve token website
-  - Retrieve all DNS entries for the token website
-- Retrieve telegram
-- Retrieve twitter
-- Retrieve facebook
-- Retrieve instagram
-- Retrieve token supply
+- Retrieves token information for the give Solana address
+  - Name
+  - Symbol
+  - Description
+  - Website
+    - DNS entries for the website
+  - Telegram
+  - Twitter
+  - Facebook
+  - Instagram
+  - Supply
+
+  These fields are all optional and will not be returned if they do not exist.
 
 ## Technologies
 This project is built using the following technologies and libraries:
@@ -24,6 +27,7 @@ This project is built using the following technologies and libraries:
 - Clap: For parsing command-line arguments.
 - Serde and Serde JSON: For serialization and deserialization of JSON data.
 - Tokio: For asynchronous runtime and operations.
+- Base58: For encoding to base58 format.
 - Reqwest: For making HTTP requests to fetch token information.
 - Trust-DNS-Resolver: For performing DNS lookups.
 - Regex: For pattern matching and text processing.
@@ -69,8 +73,6 @@ solana-client = "1.9"
 solana-sdk = "1.9"
 solana-program = "1.9"
 spl-token = "3.3.0"
-borsh = "0.9" 
-hex = "0.4"
 reqwest = { version = "0.11", features = ["blocking", "json"] }
 trust-dns-resolver = "0.20"
 regex = "1.5"
